@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Detail extends Model
+{
+    /**
+     * fillable
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'idtransaksi',
+        'idbuku',
+        'tgl_kembali',
+        'denda',
+        'id_petugas',
+    ];
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class, 'idtransaksi');
+    }
+    public function idbuku()
+    {
+        return $this->belongsTo(Book::class, 'idbuku');
+    }
+    public function idpetugas()
+    {
+        return $this->belongsTo(Librarian::class, 'idpetugas');
+    }
+}
